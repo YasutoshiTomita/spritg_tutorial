@@ -14,7 +14,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="user")
 public class User implements Serializable{
-    private static final long serviceVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
+
 
     /** 性別の列挙 **/
     public static enum Gender {
