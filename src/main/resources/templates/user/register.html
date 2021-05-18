@@ -15,10 +15,13 @@
     <h1>User情報管理システム</h1>
     <h2>User登録</h2>
     <form method="post" action="/user/register" th:action="@{/user/register}">
+        <label for="name">名前</label>
+        <input type="text" id="name" name="name" size="20" />
+        <br />
         <label for="gender">性別</label>
         <select id="gender" name="gender">
-            <option value=""/>
-            <option th:each="gender:${T(com.techacademy.entity.User.Gender).values()}" th:value="${gender}" th:text="${gender}" />
+                <option value="" />
+                <option th:each="gender:${T(com.techacademy.entity.User.Gender).values()}" th:value="${gender}" th:text="${gender}" />
         </select>
         <br />
         <label for="age">年齢</label>
