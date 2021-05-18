@@ -12,11 +12,10 @@ import com.techacademy.repository.UserRepository;
 @Service
 @Transactional(readOnly=true)
 public class UserService {
-    @Autowired
-    private UserRepository userRepository;
+        @Autowired
+        private UserRepository userRepository;
 
-    public List<User> getUserList(){
-        return userRepository.findAll();
-    }
-
+        public List<User> getUserList() {
+                return userRepository.findAll();
+        }
 }

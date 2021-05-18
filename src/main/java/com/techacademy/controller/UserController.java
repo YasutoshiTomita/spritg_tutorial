@@ -10,13 +10,12 @@ import com.techacademy.service.UserService;
 @Controller
 @RequestMapping("user")
 public class UserController {
-    @Autowired
-    private UserService userService;
+        @Autowired
+        private UserService userService;
 
-    @RequestMapping("list")
-    public String list(Model model) {
-        model.addAttribute("userlist", userService.getUserList());
-        return "user/list";
-    }
-
+        @RequestMapping("list")
+        public String list(Model model) {
+                model.addAttribute("userlist", userService.getUserList());
+                return "user/list";
+        }
 }
