@@ -53,7 +53,7 @@ public class User implements Serializable{
         @Length(max=50)
         private String email;
 
-        /** 認証エンティティと関連定義 **/
+        /** 認証エンティティと関連定義 */
         @OneToOne(mappedBy="user")
         private Authentication authentication;
 
@@ -98,10 +98,10 @@ public class User implements Serializable{
         }
 
         public Authentication getAuthentication() {
-            return authentication;
+                return authentication;
         }
 
         public void setAuthentication(Authentication authentication) {
-            this.authentication = authentication;
+                this.authentication = authentication;
         }
 }

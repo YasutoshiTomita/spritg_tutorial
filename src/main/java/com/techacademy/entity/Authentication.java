@@ -10,50 +10,50 @@ import javax.persistence.OneToOne;
 @Entity
 public class Authentication {
 
-    /** login user name **/
-    @Id
-    private String loginUser;
+        /** ログインユーザ名 */
+        @Id
+        private String loginUser;
 
-    /** password **/
-    private String password;
+        /** パスワード */
+        private String password;
 
-    /** effective date **/
-    private Date validDate;
+        /** 有効日付 */
+        private Date validDate;
 
-    /** user ID **/
-    @OneToOne(optional=false)
-    @JoinColumn(name="userId", referencedColumnName="id")
-    private User user;
+        /** ユーザID */
+        @OneToOne(optional=false)
+        @JoinColumn(name="userId", referencedColumnName="id")
+        private User user;
 
-    public String getLoginUser() {
-        return loginUser;
-    }
+        public String getLoginUser() {
+                return loginUser;
+        }
 
-    public void setLoginUser(String loginUser) {
-        this.loginUser = loginUser;
-    }
+        public void setLoginUser(String loginUser) {
+                this.loginUser = loginUser;
+        }
 
-    public String getPassword() {
-        return password;
-    }
+        public String getPassword() {
+                return password;
+        }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+        public void setPassword(String password) {
+                this.password = password;
+        }
 
-    public Date getValidDate() {
-        return validDate;
-    }
+        public Date getValidDate() {
+                return validDate;
+        }
 
-    public void setValidDate(Date validDate) {
-        this.validDate = validDate;
-    }
+        public void setValidDate(Date validDate) {
+                this.validDate = validDate;
+        }
 
-    public User getUser() {
-        return user;
-    }
+        public User getUser() {
+                return user;
+        }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+        public void setUser(User user) {
+                this.user = user;
+        }
 }

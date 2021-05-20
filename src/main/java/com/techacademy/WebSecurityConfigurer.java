@@ -15,32 +15,31 @@ import com.techacademy.service.UserDetailService;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
-    @Autowired
-    UserDetailService userDetailService;
+        @Autowired
+        UserDetailService userDetailService;
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-            .anyRequest().authenticated()
-            .and()
-            .formLogin()
-            .loginPage("/login")
-            .usernameParameter("/login")
-            .usernameParameter("loginuser")
-            .passwordParameter("password")
-            .defaultSuccessUrl("/user/list/", true)
-            .failureUrl("/login?error=ture").permitAll();
+        @Bean
+        PasswordEncoder passwordEncoder() {
+                return PasswordEncoderFactories.createDelegatingPasswordEncoder();
         }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(userDetailService)
-            .passwordEncoder(passwordEncoder());
-    }
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+                http.authorizeRequests()
+                        .anyRequest().authenticated()
+                        .and()
+                        .formLogin()
+                        .loginPage("/login")
+                        .loginProcessingUrl("/login")
+                        .usernameParameter("loginuser")
+                        .passwordParameter("password")
+                        .defaultSuccessUrl("/user/list/", true)
+                        .failureUrl("/login?error=ture").permitAll();
+        }
 
+        @Override
+        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+                auth.userDetailsService(userDetailService)
+                        .passwordEncoder(passwordEncoder());
+        }
 }
