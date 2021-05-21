@@ -37,6 +37,14 @@ public class UserController {
                 return "user/register";
         }
 
+        @RequestMapping(path="list", params="toRegister")
+        public String toRegister(@ModelAttribute User user,
+                                                Model model) {
+                return "user/register";
+        }
+
+
+
         @RequestMapping(path="register", params="registerRun")
         public String registerRun(@ModelAttribute @Validated User user,
                                                         BindingResult res,
@@ -61,13 +69,25 @@ public class UserController {
         }
 
         @RequestMapping(path="change", params="changeRun")
-        public String changeRun(@ModelAttribute User user, Model model) {
+        public String changeRun(@ModelAttribute @Validated User user,
+                                                BindingResult res,
+                                                Model model) {
+            String rtn = null;
+            if (!res.hasErrors()) {
                 userService.saveUser(user);
                 model.addAttribute("userlist", userService.getUserList());
-                return "user/list";
+                rtn = "user/list";
+            } else {
+                model.addAttribute("errmsg", messageSource.getMessage("errmsg.form.input", null, Locale.getDefault()));
+                model.addAttribute("user", user);
+                rtn = "user/change";
+            }
+
+
+                return rtn;
         }
 
-        @RequestMapping(path="change", params="returnList")
+        @RequestMapping(path= {"change","register"}, params="returnList")
         public String returnList(Model model) {
                 model.addAttribute("userlist", userService.getUserList());
                 return "user/list";
@@ -78,4 +98,6 @@ public class UserController {
                 userService.deleteUser(idck);
                 return "redirect:list";
         }
+
+
 }
